@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Akmaliah & Yasir</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,400&family=Montserrat:wght@200;400;500&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dusty-blue: #b4c7d9;
+            --deep-slate: #4a5d6e;
+            --soft-white: #f8fafc;
+            --gold-accent: #c5a38d;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: var(--soft-white); 
+            color: var(--deep-slate);
+            overflow-x: hidden;
+        }
+        .serif { font-family: 'Cormorant Garamond', serif; }
+
+        /* --- COVER FIX (FOTO TIDAK TERTUTUP) --- */
+        #cover {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--soft-white);
+            z-index: 9999; display: flex; flex-direction: column;
+            transition: 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .cover-photo {
+            flex: 1.2; /* Memberikan ruang lebih besar untuk foto */
+            background: url('GNT00589.JPG') center top/cover;
+            width: 100%;
+        }
+
+        .cover-content {
+            flex: 1;
+            padding: 30px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            border-top: 5px solid var(--dusty-blue);
+        }
+
+        .btn-elegant {
+            margin-top: 20px; padding: 12px 40px;
+            background: var(--deep-slate); color: white;
+            border: none; border-radius: 50px; cursor: pointer;
+            letter-spacing: 3px; font-size: 0.7rem; transition: 0.4s;
+        }
+
+        /* --- SECTION STYLING --- */
+        section { padding: 60px 20px; position: relative; text-align: center; }
+
+        .photo-frame {
+            position: relative; width: 100%; max-width: 320px; margin: 0 auto;
+        }
+        .main-img {
+            width: 100%; height: auto; max-height: 450px; object-fit: cover;
+            border-radius: 160px 160px 20px 20px;
+            border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* --- GRID GALLERY --- */
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px;
+        }
+        .gallery-item {
+            width: 100%; height: 200px; object-fit: cover; border-radius: 15px;
+        }
+        .gallery-item:nth-child(even) { margin-top: 30px; }
+
+        /* --- STORY CARD --- */
+        .story-card {
+            background: white; padding: 30px 20px; border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(180, 199, 217, 0.2);
+            line-height: 1.8; font-size: 0.85rem; text-align: justify;
+        }
+
+        /* --- INFO CARD --- */
+        .info-card {
+            background: var(--dusty-blue); color: white;
+            padding: 25px; border-radius: 20px; margin-top: 20px;
+        }
+
+        /* --- BUKU TAMU --- */
+        .rsvp-form {
+            background: white; padding: 25px 20px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left;
+        }
+        .rsvp-form input, .rsvp-form select, .rsvp-form textarea {
+            width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid #ddd; border-radius: 8px;
+            font-family: 'Montserrat', sans-serif; font-size: 0.85rem;
+        }
+        .btn-submit {
+            width: 100%; background: var(--deep-slate); color: white;
+            padding: 12px; border: none; border-radius: 8px; cursor: pointer;
+        }
+        .guest-item {
+            background: #fff; padding: 15px; border-radius: 12px;
+            margin-top: 15px; border-left: 4px solid var(--dusty-blue);
+            text-align: left; box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        #guest-list { max-height: 350px; overflow-y: auto; margin-top: 20px; }
+
+        #music-toggle {
+            position: fixed; bottom: 25px; right: 25px; z-index: 1000;
+            background: white; border: none; width: 50px; height: 50px;
+            border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cover">
+        <div class="cover-photo"></div>
+        <div class="cover-content">
+            <p class="serif" style="letter-spacing: 5px; font-size: 0.8rem;">THE WEDDING OF</p>
+            <h1 class="serif" style="font-size: 2.2rem; margin: 10px 0;">Akmaliah & Yasir</h1>
+            <p style="font-size: 0.7rem; letter-spacing: 2px; color: var(--gold-accent);">05 . 04 . 2026</p>
+            <button class="btn-elegant" onclick="openInvitation()">BUKA UNDANGAN</button>
+        </div>
+    </div>
+
+    <audio id="bgMusic" loop>
+        <source src="https://vt.tiktok.com/ZSmVm1r75/" type="audio/mpeg">
+    </audio>
+    <button id="music-toggle" onclick="toggleMusic()">🎵</button>
+
+    <section>
+        <div class="photo-frame" data-aos="fade-up">
+            <img src="GNT00616.JPG" class="main-img" alt="Mempelai">
+            <div style="position: absolute; bottom: -15px; right: -15px; background: white; padding: 12px; border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <span class="serif" style="font-size: 1.2rem;">A & Y</span>
+            </div>
+        </div>
+    </section>
+
+    <section style="background: #f0f4f8;">
+        <h2 class="serif" data-aos="fade-up" style="font-size: 2.2rem; margin-bottom: 25px;">Our Journey</h2>
+        <div class="story-card" data-aos="fade-up">
+            <p class="serif" style="font-size: 1.1rem; color: var(--gold-accent); margin-bottom: 10px;">"Dari Gugur Daun ke Janji Suci..."</p>
+            <p> Takdir yang Bertemu
+
+"Dimulai dari sebuah pertemuan tak terduga yang sederhana, kami menemukan kenyamanan yang luar biasa. Bukan tentang seberapa lama kami saling mengenal, tapi tentang seberapa dalam kami saling memahami. Lewat tawa yang dibagikan dan air mata yang saling menguatkan, kami menyadari bahwa rumah bukanlah sebuah tempat, melainkan satu sama lain. Kini, kami siap melangkah ke babak baru untuk selamanya."
+Dan 
+Berawal dari sebuah tatapan yang tak sengaja tertambat di depan teras rumah saudara, takdir mulai membisikkan nama Amal dan Yasir dalam satu melodi yang indah. Di balik riuhnya suasana tempat makan, setiap tawa dan cerita yang kita bagi menjadi saksi bahwa kebahagiaan sejati tumbuh dari kesederhanaan yang kita lalui bersama. Kini, debaran yang bermula dari pertemuan sederhana itu telah bertransformasi menjadi janji setia, di mana kami memilih satu sama lain sebagai tempat terakhir untuk pulang dan melabuhkan seluruh sisa usia dalam ikatan suci pernikahan."</p>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="serif" data-aos="fade-up" style="font-size: 2.2rem; margin-bottom: 25px;">Our Gallery</h2>
+        <div class="gallery-grid">
+            <img src="01.JPG" class="gallery-item" data-aos="zoom-in">
+            <img src="02.JPG" class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+            <img src="03.JPG" class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+            <img src="04.JPG" class="gallery-item" data-aos="zoom-in" data-aos-delay="300">
+        </div>
+    </section>
+
+    <section style="background: var(--deep-slate); color: white;">
+        <h2 class="serif" data-aos="fade-up" style="font-size: 2.2rem;">Save The Date</h2>
+        <div class="info-card" style="background: rgba(255,255,255,0.1);" data-aos="fade-up">
+            <h3 class="serif">05 April 2026</h3>
+            <p>09:00 WIB - Selesai</p>
+            <div style="margin: 15px 0; height: 1px; background: rgba(255,255,255,0.2);"></div>
+            <p style="font-size: 0.85rem;">Kp. Pager Jangkung RT 003/006, Desa Situ Ilir, Cibungbulang, Bogor</p>
+        </div>
+        <a href="https://maps.google.com" target="_blank" class="btn-elegant" style="background: white; color: var(--deep-slate); text-decoration: none; display: inline-block;">LIHAT MAPS</a>
+    </section>
+
+    <section>
+        <h2 class="serif" data-aos="fade-up" style="font-size: 2.2rem; margin-bottom: 20px;">Tanda Kasih</h2>
+        <div class="info-card" data-aos="flip-left">
+            <p>BSI - 7254432851</p>
+            <p style="font-size: 0.8rem;">a.n Akmaliah</p>
+            <button onclick="copyNum('7254432851')" style="background: white; border: none; padding: 5px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-size: 0.75rem;">Salin</button>
+        </div>
+        <div class="info-card" data-aos="flip-left" data-aos-delay="200">
+            <p>BRI - 12570100692750</p>
+            <p style="font-size: 0.8rem;">a.n M. Yasir Denhaz</p>
+            <button onclick="copyNum('12570100692750')" style="background: white; border: none; padding: 5px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-size: 0.75rem;">Salin</button>
+        </div>
+    </section>
+
+    <section style="background: #f9f9f9;">
+        <h2 class="serif" data-aos="fade-up" style="font-size: 2rem; margin-bottom: 10px;">Buku Tamu</h2>
+        <p data-aos="fade-up" style="font-size: 0.75rem; margin-bottom: 20px;">Sampaikan doa restu Anda</p>
+        
+        <div class="rsvp-form" data-aos="fade-up">
+            <form id="rsvp-form">
+                <input type="text" id="guest-name" placeholder="Nama Lengkap" required>
+                <select id="guest-status" required>
+                    <option value="" disabled selected>Konfirmasi Kehadiran</option>
+                    <option value="Hadir">Hadir</option>
+                    <option value="Berhalangan">Berhalangan</option>
+                </select>
+                <textarea id="guest-wish" rows="3" placeholder="Tulis ucapan & doa..." required></textarea>
+                <button type="submit" class="btn-submit">Kirim Ucapan</button>
+            </form>
+        </div>
+
+        <div id="guest-list"></div>
+    </section>
+
+    <footer style="padding: 40px 20px; background: #e2e8f0; font-size: 0.75rem;">
+        <p class="serif" style="font-size: 1.3rem;">Akmaliah & Yasir</p>
+        <p>05.04.2026</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        function openInvitation() {
+            document.getElementById('cover').style.transform = 'translateY(-100%)';
+            const audio = document.getElementById('bgMusic');
+            // Mulai lagu dari detik ke-78 (sekitar bagian Reff)
+            audio.currentTime = 78; 
+            audio.play();
+        }
+
+        function toggleMusic() {
+            const audio = document.getElementById('bgMusic');
+            const btn = document.getElementById('music-toggle');
+            if (audio.paused) { audio.play(); btn.innerText = "⏸️"; }
+            else { audio.pause(); btn.innerText = "🎵"; }
+        }
+
+        function copyNum(text) {
+            navigator.clipboard.writeText(text);
+            alert("Nomor rekening berhasil disalin!");
+        }
+
+        const rsvpForm = document.getElementById('rsvp-form');
+        const guestList = document.getElementById('guest-list');
+
+        rsvpForm.onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('guest-name').value;
+            const status = document.getElementById('guest-status').value;
+            const wish = document.getElementById('guest-wish').value;
+
+            const entry = document.createElement('div');
+            entry.className = 'guest-item';
+            entry.innerHTML = `<h4>${name}</h4><small>${status}</small><p>"${wish}"</p>`;
+            guestList.prepend(entry);
+            rsvpForm.reset();
+        }
+    </script>
+</body>
+</html>
