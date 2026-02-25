@@ -25,7 +25,7 @@
         }
         .serif { font-family: 'Cormorant Garamond', serif; }
 
-        /* --- COVER FIX (FOTO TIDAK TERTUTUP) --- */
+        /* --- COVER --- */
         #cover {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--soft-white);
@@ -34,7 +34,7 @@
         }
 
         .cover-photo {
-            flex: 1.2; /* Memberikan ruang lebih besar untuk foto */
+            flex: 1.2;
             background: url('GNT00589.JPG') center top/cover;
             width: 100%;
         }
@@ -56,9 +56,10 @@
             background: var(--deep-slate); color: white;
             border: none; border-radius: 50px; cursor: pointer;
             letter-spacing: 3px; font-size: 0.7rem; transition: 0.4s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* --- SECTION STYLING --- */
+        /* --- SECTIONS --- */
         section { padding: 60px 20px; position: relative; text-align: center; }
 
         .photo-frame {
@@ -70,7 +71,6 @@
             border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
 
-        /* --- GRID GALLERY --- */
         .gallery-grid {
             display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; padding: 20px;
         }
@@ -79,20 +79,17 @@
         }
         .gallery-item:nth-child(even) { margin-top: 30px; }
 
-        /* --- STORY CARD --- */
         .story-card {
             background: white; padding: 30px 20px; border-radius: 30px;
             box-shadow: 0 10px 30px rgba(180, 199, 217, 0.2);
             line-height: 1.8; font-size: 0.85rem; text-align: justify;
         }
 
-        /* --- INFO CARD --- */
         .info-card {
             background: var(--dusty-blue); color: white;
             padding: 25px; border-radius: 20px; margin-top: 20px;
         }
 
-        /* --- BUKU TAMU --- */
         .rsvp-form {
             background: white; padding: 25px 20px; border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left;
@@ -106,6 +103,7 @@
             width: 100%; background: var(--deep-slate); color: white;
             padding: 12px; border: none; border-radius: 8px; cursor: pointer;
         }
+
         .guest-item {
             background: #fff; padding: 15px; border-radius: 12px;
             margin-top: 15px; border-left: 4px solid var(--dusty-blue);
@@ -117,6 +115,7 @@
             position: fixed; bottom: 25px; right: 25px; z-index: 1000;
             background: white; border: none; width: 50px; height: 50px;
             border-radius: 50%; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
     </style>
 </head>
@@ -132,8 +131,8 @@
         </div>
     </div>
 
-    <audio id="bgMusic" loop>
-        <source src="https://vt.tiktok.com/ZSmVm1r75/" type="audio/mpeg">
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://files.catbox.moe/u6v62s.mp3" type="audio/mpeg">
     </audio>
     <button id="music-toggle" onclick="toggleMusic()">🎵</button>
 
@@ -149,12 +148,10 @@
     <section style="background: #f0f4f8;">
         <h2 class="serif" data-aos="fade-up" style="font-size: 2.2rem; margin-bottom: 25px;">Our Journey</h2>
         <div class="story-card" data-aos="fade-up">
-            <p class="serif" style="font-size: 1.1rem; color: var(--gold-accent); margin-bottom: 10px;">"Dari Gugur Daun ke Janji Suci..."</p>
-            <p> Takdir yang Bertemu
-
-"Dimulai dari sebuah pertemuan tak terduga yang sederhana, kami menemukan kenyamanan yang luar biasa. Bukan tentang seberapa lama kami saling mengenal, tapi tentang seberapa dalam kami saling memahami. Lewat tawa yang dibagikan dan air mata yang saling menguatkan, kami menyadari bahwa rumah bukanlah sebuah tempat, melainkan satu sama lain. Kini, kami siap melangkah ke babak baru untuk selamanya."
-Dan 
-Berawal dari sebuah tatapan yang tak sengaja tertambat di depan teras rumah saudara, takdir mulai membisikkan nama Amal dan Yasir dalam satu melodi yang indah. Di balik riuhnya suasana tempat makan, setiap tawa dan cerita yang kita bagi menjadi saksi bahwa kebahagiaan sejati tumbuh dari kesederhanaan yang kita lalui bersama. Kini, debaran yang bermula dari pertemuan sederhana itu telah bertransformasi menjadi janji setia, di mana kami memilih satu sama lain sebagai tempat terakhir untuk pulang dan melabuhkan seluruh sisa usia dalam ikatan suci pernikahan."</p>
+            <p class="serif" style="font-size: 1.1rem; color: var(--gold-accent); margin-bottom: 10px;">Takdir yang Bertemu</p>
+            <p>Dimulai dari sebuah pertemuan tak terduga yang sederhana, kami menemukan kenyamanan yang luar biasa. Bukan tentang seberapa lama kami saling mengenal, tapi tentang seberapa dalam kami saling memahami. Kini, kami siap melangkah ke babak baru untuk selamanya.</p>
+            <br>
+            <p>Berawal dari sebuah tatapan yang tak sengaja tertambat di depan teras rumah saudara, takdir mulai membisikkan nama Amal dan Yasir dalam satu melodi yang indah. Kini, debaran itu telah bertransformasi menjadi janji setia, di mana kami memilih satu sama lain sebagai tempat terakhir untuk pulang.</p>
         </div>
     </section>
 
@@ -184,19 +181,17 @@ Berawal dari sebuah tatapan yang tak sengaja tertambat di depan teras rumah saud
         <div class="info-card" data-aos="flip-left">
             <p>BSI - 7254432851</p>
             <p style="font-size: 0.8rem;">a.n Akmaliah</p>
-            <button onclick="copyNum('7254432851')" style="background: white; border: none; padding: 5px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-size: 0.75rem;">Salin</button>
+            <button onclick="copyNum('7254432851')" style="background: white; border: none; padding: 5px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer;">Salin</button>
         </div>
         <div class="info-card" data-aos="flip-left" data-aos-delay="200">
             <p>BRI - 12570100692750</p>
             <p style="font-size: 0.8rem;">a.n M. Yasir Denhaz</p>
-            <button onclick="copyNum('12570100692750')" style="background: white; border: none; padding: 5px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-size: 0.75rem;">Salin</button>
+            <button onclick="copyNum('12570100692750')" style="background: white; border: none; padding: 5px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer;">Salin</button>
         </div>
     </section>
 
     <section style="background: #f9f9f9;">
         <h2 class="serif" data-aos="fade-up" style="font-size: 2rem; margin-bottom: 10px;">Buku Tamu</h2>
-        <p data-aos="fade-up" style="font-size: 0.75rem; margin-bottom: 20px;">Sampaikan doa restu Anda</p>
-        
         <div class="rsvp-form" data-aos="fade-up">
             <form id="rsvp-form">
                 <input type="text" id="guest-name" placeholder="Nama Lengkap" required>
@@ -209,11 +204,10 @@ Berawal dari sebuah tatapan yang tak sengaja tertambat di depan teras rumah saud
                 <button type="submit" class="btn-submit">Kirim Ucapan</button>
             </form>
         </div>
-
         <div id="guest-list"></div>
     </section>
 
-    <footer style="padding: 40px 20px; background: #e2e8f0; font-size: 0.75rem;">
+    <footer style="padding: 40px 20px; background: #e2e8f0; font-size: 0.75rem; text-align: center;">
         <p class="serif" style="font-size: 1.3rem;">Akmaliah & Yasir</p>
         <p>05.04.2026</p>
     </footer>
@@ -222,19 +216,35 @@ Berawal dari sebuah tatapan yang tak sengaja tertambat di depan teras rumah saud
     <script>
         AOS.init({ duration: 1000, once: true });
 
+        const audio = document.getElementById('bgMusic');
+        const musicBtn = document.getElementById('music-toggle');
+
         function openInvitation() {
+            // Animasi Cover Terbuka
             document.getElementById('cover').style.transform = 'translateY(-100%)';
-            const audio = document.getElementById('bgMusic');
-            // Mulai lagu dari detik ke-78 (sekitar bagian Reff)
-            audio.currentTime = 78; 
-            audio.play();
+            
+            // Atur waktu ke detik 80 (Bagian Reff lagu Cinta Terakhir)
+            audio.currentTime = 80; 
+            
+            // Play Audio
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    musicBtn.innerText = "⏸️";
+                }).catch(error => {
+                    console.log("Autoplay ditangguhkan browser");
+                });
+            }
         }
 
         function toggleMusic() {
-            const audio = document.getElementById('bgMusic');
-            const btn = document.getElementById('music-toggle');
-            if (audio.paused) { audio.play(); btn.innerText = "⏸️"; }
-            else { audio.pause(); btn.innerText = "🎵"; }
+            if (audio.paused) {
+                audio.play();
+                musicBtn.innerText = "⏸️";
+            } else {
+                audio.pause();
+                musicBtn.innerText = "🎵";
+            }
         }
 
         function copyNum(text) {
@@ -244,13 +254,11 @@ Berawal dari sebuah tatapan yang tak sengaja tertambat di depan teras rumah saud
 
         const rsvpForm = document.getElementById('rsvp-form');
         const guestList = document.getElementById('guest-list');
-
         rsvpForm.onsubmit = function(e) {
             e.preventDefault();
             const name = document.getElementById('guest-name').value;
             const status = document.getElementById('guest-status').value;
             const wish = document.getElementById('guest-wish').value;
-
             const entry = document.createElement('div');
             entry.className = 'guest-item';
             entry.innerHTML = `<h4>${name}</h4><small>${status}</small><p>"${wish}"</p>`;
